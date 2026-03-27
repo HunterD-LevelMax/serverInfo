@@ -33,7 +33,12 @@ export function useServerHistory() {
       hour: '2-digit', 
       minute: '2-digit' 
     });
-    
+
+    // Check for duplicate timestamp to prevent infinite loop
+    if (timestamps.value.length > 0 && timestamps.value[timestamps.value.length - 1] === time) {
+      return;
+    }
+
     // Add timestamp
     timestamps.value.push(time);
     
