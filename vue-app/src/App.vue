@@ -6,15 +6,15 @@
     </h1>
     
     <!-- Controls Panel -->
-    <ControlsPanel
-      :is-realtime="isRealtime"
-      :interval="updateInterval"
-      :status-text="statusText"
-      :update-count="updateCount"
-      @mode-change="setMode"
-      @interval-change="setIntervalValue"
-      @manual-update="fetchData"
-    />
+      <ControlsPanel
+        :is-realtime="isRealtime"
+        :interval="updateInterval"
+        :status-text="statusText"
+        :update-count="updateCount"
+        @mode-change="setMode"
+        @interval-change="setIntervalValue"
+        @manual-update="() => fetchData(true)"
+      />
     
     <!-- Main Content -->
     <div id="server-data">
@@ -130,5 +130,5 @@ watch(serverData, (newData) => {
   if (newData) {
     addDataPoint(newData);
   }
-});
+}, { flush: 'post' });
 </script>

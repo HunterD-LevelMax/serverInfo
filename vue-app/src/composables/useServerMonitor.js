@@ -23,8 +23,8 @@ export function useServerMonitor() {
   });
 
   // Methods
-  const fetchData = async () => {
-    if (!isRealtime.value && timer) return;
+  const fetchData = async (bypassModeCheck = false) => {
+    if (!bypassModeCheck && !isRealtime.value) return;
     
     updateCount.value++;
     
